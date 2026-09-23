@@ -1,0 +1,39 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 844" width="390" height="844" fill="none">
+  <!-- Device Outer Frame -->
+  <rect width="390" height="844" rx="44" fill="#191919"/>
+  <!-- Screen Area -->
+  <rect x="12" y="12" width="366" height="820" rx="36" fill="#EEF5FA"/>
+  
+  <!-- Dynamic Island -->
+  <rect x="135" y="24" width="120" height="30" rx="15" fill="#191919"/>
+  
+  <!-- Mobile Navigation Header -->
+  <g transform="translate(32, 80)">
+    <text x="0" y="20" font-family="'Manrope', sans-serif" font-weight="800" font-size="18" fill="#191919">Nalgene</text>
+    <line x1="290" y1="12" x2="316" y2="12" stroke="#191919" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="290" y1="20" x2="316" y2="20" stroke="#191919" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Mobile Hero -->
+  <g transform="translate(32, 140)">
+    <rect x="0" y="0" width="100" height="22" rx="11" fill="#1864AB" fill-opacity="0.15"/>
+    <text x="12" y="15" font-family="'Manrope', sans-serif" font-weight="600" font-size="10" fill="#1864AB">CASE STUDY</text>
+    
+    <text x="0" y="60" font-family="'Manrope', sans-serif" font-weight="800" font-size="34" letter-spacing="-1" fill="#191919">Nalgene</text>
+    <text x="0" y="92" font-family="'Manrope', sans-serif" font-weight="400" font-size="14" fill="#555555">Digital platform experience</text>
+    
+    <!-- Mobile Card Visual -->
+    <rect x="0" y="125" width="326" height="340" rx="16" fill="#1864AB"/>
+    <circle cx="163" cy="280" r="70" fill="#FFFFFF" fill-opacity="0.2"/>
+    <polygon points="120,240 206,240 163,320" fill="#FFFFFF" fill-opacity="0.9"/>
+    
+    <!-- Mobile CTA -->
+    <rect x="0" y="490" width="326" height="48" rx="8" fill="#191919"/>
+    <text x="110" y="520" font-family="'Manrope', sans-serif" font-weight="600" font-size="14" fill="#F5F2EB">Explore Project</text>
+    
+    <!-- Info Pill -->
+    <rect x="0" y="555" width="326" height="60" rx="8" fill="#FFFFFF" fill-opacity="0.8"/>
+    <text x="16" y="580" font-family="'Manrope', sans-serif" font-weight="600" font-size="11" fill="#888888">CONTRIBUTION</text>
+    <text x="16" y="600" font-family="'Manrope', sans-serif" font-weight="600" font-size="13" fill="#191919">To be confirmed</text>
+  </g>
+</svg>

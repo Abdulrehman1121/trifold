@@ -1,0 +1,16 @@
+/*
+Theme Name: Trifold
+Theme URI: https://trifold.agency/
+Author: Trifold Agency (Farhan Khan, Shayan Mutahir, Abdul Rehman Kaleem)
+Author URI: https://trifold.agency/
+Description: A bespoke, cinematic, editorial WordPress theme for Trifold Creative Digital Agency. Engineered for performance, Core Web Vitals excellence, and seamless brand continuity.
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: trifold
+Tags: agency, portfolio, editorial, creative, minimal, custom-background, featured-images, full-width-template
+*/
+
+@import url('assets/css/trifold-core.css');
+@import url('assets/css/trifold-components.css');
+@import url('assets/css/trifold-motion.css');

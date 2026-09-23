@@ -1,0 +1,45 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1200" width="1000" height="1200" fill="none">
+  <rect width="1000" height="1200" fill="#F2F5F0"/>
+  
+  <!-- Concept Label Badge (Mandatory requirement: visibly marked CONCEPT PROJECT) -->
+  <rect x="60" y="60" width="190" height="34" rx="4" fill="#E4492E"/>
+  <text x="76" y="82" font-family="'Manrope', sans-serif" font-weight="800" font-size="12" letter-spacing="1.5" fill="#FFFFFF">CONCEPT PROJECT</text>
+  <text x="270" y="82" font-family="'Manrope', sans-serif" font-weight="500" font-size="13" fill="#888888">Trifold Exploratory Studio</text>
+  
+  <line x1="60" y1="120" x2="940" y2="120" stroke="#191919" stroke-opacity="0.1" stroke-width="1.5"/>
+  
+  <!-- Massive Editorial Heading -->
+  <g transform="translate(60, 200)">
+    <text x="0" y="60" font-family="'Manrope', sans-serif" font-weight="800" font-size="82" letter-spacing="-3" fill="#191919">Verve Botanicals</text>
+    <text x="0" y="110" font-family="'Manrope', sans-serif" font-weight="500" font-size="22" letter-spacing="0.5" fill="#E4492E">Organic Clinical Skincare</text>
+  </g>
+  
+  <!-- Architectural / Graphic Artwork Field -->
+  <g transform="translate(60, 360)">
+    <rect width="880" height="620" rx="8" fill="#4A5844" fill-opacity="0.9"/>
+    <g transform="translate(140, 80)">
+  <rect x="180" y="40" width="240" height="340" rx="30" fill="#F5F2EB" stroke="#4A5844" stroke-width="3"/>
+  <rect x="250" y="0" width="100" height="40" rx="6" fill="#E4492E"/>
+  <line x1="220" y1="180" x2="380" y2="180" stroke="#4A5844" stroke-width="2"/>
+  <text x="235" y="160" font-family="'Manrope', sans-serif" font-weight="700" font-size="20" fill="#4A5844" letter-spacing="3">VERVE</text>
+  <text x="240" y="210" font-family="'Manrope', sans-serif" font-weight="400" font-size="12" fill="#888888">SERUM â„– 03</text>
+</g>
+    
+    <!-- Editorial Typography Overlay -->
+    <text x="50" y="550" font-family="'Manrope', sans-serif" font-weight="800" font-size="36" fill="#FFFFFF" letter-spacing="-1">FORM FOLLOWS INTENT</text>
+    <text x="50" y="580" font-family="'Manrope', sans-serif" font-weight="400" font-size="16" fill="#FFFFFF" fill-opacity="0.8">Visual identity, editorial layout, packaging &amp; brand systems</text>
+  </g>
+  
+  <!-- Footer Colophon -->
+  <g transform="translate(60, 1040)">
+    <line x1="0" y1="0" x2="880" y2="0" stroke="#191919" stroke-opacity="0.1" stroke-width="1.5"/>
+    <text x="0" y="40" font-family="'Manrope', sans-serif" font-weight="600" font-size="12" fill="#888888">DISCIPLINE</text>
+    <text x="0" y="65" font-family="'Manrope', sans-serif" font-weight="600" font-size="15" fill="#191919">Graphic Design &amp; Brand Systems</text>
+    
+    <text x="320" y="40" font-family="'Manrope', sans-serif" font-weight="600" font-size="12" fill="#888888">STATUS</text>
+    <text x="320" y="65" font-family="'Manrope', sans-serif" font-weight="600" font-size="15" fill="#E4492E">Concept Project / Self-Initiated</text>
+    
+    <text x="640" y="40" font-family="'Manrope', sans-serif" font-weight="600" font-size="12" fill="#888888">SYSTEM</text>
+    <text x="640" y="65" font-family="'Manrope', sans-serif" font-weight="600" font-size="15" fill="#191919">Trifold Studio 2026</text>
+  </g>
+</svg>
