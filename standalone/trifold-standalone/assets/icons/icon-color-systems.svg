@@ -1,0 +1,7 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" fill="none">
+  <!-- 3 folded color swatches -->
+  <polygon points="8,10 24,4 32,20 16,26" fill="#F5F2EB" stroke="currentColor" stroke-width="1.5"/>
+  <polygon points="16,26 32,20 40,36 24,42" fill="#B7B1A7" stroke="currentColor" stroke-width="1.5"/>
+  <polygon points="20,18 36,12 44,28 28,34" fill="#E4492E"/>
+  <circle cx="12" cy="15" r="2" fill="#191919"/>
+</svg>

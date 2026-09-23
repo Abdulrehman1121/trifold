@@ -1,0 +1,257 @@
+/* ==========================================================================
+   TRIFOLD DIGITAL DESIGN SYSTEM — MOTION & RESPONSIVE CSS
+   ========================================================================== */
+
+/* Lenis Smooth Scroll Configuration */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* Motion Reveal Base Classes */
+[data-unfold] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s var(--ease-power3-out), transform 0.8s var(--ease-power3-out);
+}
+
+[data-unfold].is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Three-Plane Morph Classes */
+.plane-p0, .plane-p1, .plane-p2 {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.6s var(--ease-expo-out);
+}
+
+/* Responsive Breakpoints System */
+/* Desktop Large 1440 - 1920 */
+@media (min-width: 1440px) {
+  .container {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+}
+
+/* Laptop 1024 - 1280 */
+@media (max-width: 1280px) {
+  .service-row-body-inner {
+    grid-template-columns: 1fr;
+    padding-left: 0;
+  }
+
+  .about-content-row {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .manifesto-conclusion {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Tablet Landscape & Portrait 768 - 1023 */
+@media (max-width: 1023px) {
+  .primary-nav {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .carousel-slide {
+    flex: 0 0 86vw;
+  }
+
+  .process-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .graphic-wall-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .insights-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .planner-options-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile Devices 360 - 767 (Redesigned, Not Shrunk) */
+@media (max-width: 767px) {
+  :root {
+    --space-section: 64px;
+    --container-padding: 20px;
+  }
+
+  .hero-section {
+    min-height: auto;
+    padding-top: 100px;
+    padding-bottom: 60px;
+  }
+
+  .hero-logo-stage {
+    max-width: 320px;
+  }
+
+  .hero-scroll-indicator {
+    display: none;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .hero-cta-group .btn {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .story-pin-container {
+    flex-direction: column;
+    min-height: auto;
+    gap: 40px;
+  }
+
+  .story-visual-col {
+    position: relative;
+    top: auto;
+    order: -1;
+  }
+
+  .story-morph-canvas {
+    width: 260px;
+    height: 260px;
+  }
+
+  .story-step-card {
+    margin-bottom: 40px;
+  }
+
+  .carousel-slide {
+    flex: 0 0 92vw;
+  }
+
+  .slide-info-row {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .slide-meta-right {
+    align-items: flex-start;
+  }
+
+  .service-row-header {
+    padding: 24px 0;
+  }
+
+  .service-row-left {
+    gap: 16px;
+  }
+
+  .process-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .manifesto-conclusion {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .footer-bottom-bar {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+
+  .project-planner-box {
+    padding: 28px 20px;
+  }
+
+  .planner-options-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .planner-progress-bar {
+    overflow-x: auto;
+    padding-bottom: 12px;
+    justify-content: flex-start;
+    gap: 16px;
+  }
+
+  .planner-step-tab {
+    flex-shrink: 0;
+  }
+}
+
+/* ==========================================================================
+   PREFERS-REDUCED-MOTION: COMPLETE ACCESSIBILITY FALLBACK
+   The website must look magnificent even with zero motion.
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .hero-backdrop-geometry {
+    animation: none !important;
+    transform: translate(-50%, -50%) rotate(35deg) !important;
+  }
+
+  .carousel-slide {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .story-step-card {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  [data-unfold] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .custom-cursor {
+    display: none !important;
+  }
+}

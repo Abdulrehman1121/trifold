@@ -1,0 +1,54 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 800" width="1280" height="800" fill="none">
+  <rect width="1280" height="800" fill="#F8FAFC"/>
+  
+  <!-- Browser Chrome Header -->
+  <rect width="1280" height="48" fill="#FFFFFF" fill-opacity="0.9"/>
+  <line x1="0" y1="48" x2="1280" y2="48" stroke="#E5E5E5" stroke-width="1"/>
+  <!-- Window Controls -->
+  <circle cx="28" cy="24" r="6" fill="#FF5F56"/>
+  <circle cx="48" cy="24" r="6" fill="#FFBD2E"/>
+  <circle cx="68" cy="24" r="6" fill="#27C93F"/>
+  <!-- URL Bar -->
+  <rect x="140" y="10" width="600" height="28" rx="6" fill="#F1F1F1"/>
+  <text x="160" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#777777">https://guardian.com</text>
+  
+  <!-- Website Header Navigation -->
+  <rect x="0" y="49" width="1280" height="72" fill="#FFFFFF" fill-opacity="0.8"/>
+  <text x="80" y="93" font-family="'Manrope', sans-serif" font-weight="800" font-size="22" letter-spacing="-0.5" fill="#191919">Guardian Family Law</text>
+  <text x="400" y="91" font-family="'Manrope', sans-serif" font-weight="500" font-size="14" fill="#555555">Practice Areas Â· Our Team Â· Resources Â· Consult</text>
+  <rect x="1100" y="68" width="100" height="34" rx="4" fill="#1E293B"/>
+  <text x="1124" y="90" font-family="'Manrope', sans-serif" font-weight="600" font-size="12" fill="#FFFFFF">Contact</text>
+  
+  <!-- Hero Section -->
+  <g transform="translate(80, 180)">
+    <rect x="0" y="0" width="120" height="26" rx="13" fill="#1E293B" fill-opacity="0.12"/>
+    <text x="14" y="17" font-family="'Manrope', sans-serif" font-weight="600" font-size="11" letter-spacing="1" fill="#1E293B">SELECTED CASE</text>
+    
+    <text x="0" y="85" font-family="'Manrope', sans-serif" font-weight="800" font-size="56" letter-spacing="-1.5" fill="#191919">Guardian Family Law</text>
+    <text x="0" y="130" font-family="'Manrope', sans-serif" font-weight="400" font-size="20" fill="#666666">Compassionate family law & dispute resolution advisory</text>
+    
+    <rect x="0" y="170" width="160" height="48" rx="4" fill="#191919"/>
+    <text x="32" y="200" font-family="'Manrope', sans-serif" font-weight="600" font-size="14" fill="#F5F2EB">Explore Project</text>
+  </g>
+  
+  <!-- Hero Visual / Composition Card -->
+  <g transform="translate(680, 160)">
+    <rect width="520" height="420" rx="12" fill="#1E293B" fill-opacity="0.9"/>
+    <rect x="20" y="20" width="480" height="380" rx="8" fill="#FFFFFF" fill-opacity="0.15"/>
+    <circle cx="260" cy="210" r="110" fill="#FFFFFF" fill-opacity="0.25"/>
+    <polygon points="200,160 320,160 260,270" fill="#FFFFFF" fill-opacity="0.9"/>
+    <text x="210" y="340" font-family="'Manrope', sans-serif" font-weight="700" font-size="18" fill="#FFFFFF" letter-spacing="2">DIGITAL SHOWCASE</text>
+  </g>
+  
+  <!-- Bottom Editorial Grid -->
+  <g transform="translate(80, 620)">
+    <line x1="0" y1="0" x2="1120" y2="0" stroke="#DDDDDD" stroke-width="1"/>
+    <text x="0" y="40" font-family="'Manrope', sans-serif" font-weight="600" font-size="13" fill="#888888">01 / ARCHITECTURE</text>
+    <text x="380" y="40" font-family="'Manrope', sans-serif" font-weight="600" font-size="13" fill="#888888">02 / VISUAL SYSTEM</text>
+    <text x="760" y="40" font-family="'Manrope', sans-serif" font-weight="600" font-size="13" fill="#888888">03 / PERFORMANCE</text>
+    
+    <text x="0" y="70" font-family="'Manrope', sans-serif" font-weight="400" font-size="14" fill="#444444">Structured information hierarchy</text>
+    <text x="380" y="70" font-family="'Manrope', sans-serif" font-weight="400" font-size="14" fill="#444444">Considered typography &amp; layout</text>
+    <text x="760" y="70" font-family="'Manrope', sans-serif" font-weight="400" font-size="14" fill="#444444">Seamless responsive interaction</text>
+  </g>
+</svg>

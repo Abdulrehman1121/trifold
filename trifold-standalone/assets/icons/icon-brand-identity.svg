@@ -1,0 +1,7 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" fill="none">
+  <!-- Trifold miniature mark -->
+  <polygon points="6,12 14,7 40,7 20,16" fill="#E4492E"/>
+  <polygon points="23,18 40,8 40,17 29,21" fill="#E4492E"/>
+  <polygon points="19,17 29,22 29,38 19,32" fill="#E4492E"/>
+  <rect x="4" y="4" width="40" height="40" rx="2" stroke="currentColor" stroke-width="1.5" stroke-opacity="0.25"/>
+</svg>
