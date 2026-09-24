@@ -59,8 +59,9 @@ get_header();
                   <?php elseif ($desktop_img) : ?>
                     <img src="<?php echo esc_url($desktop_img); ?>" alt="<?php the_title_attribute(); ?>" class="slide-image">
                   <?php else : ?>
-                    <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/portfolio/sumus-desktop.svg'); ?>" alt="<?php the_title_attribute(); ?>" class="slide-image">
+                    <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/portfolio/sumus-desktop.jpg'); ?>" alt="<?php the_title_attribute(); ?>" class="slide-image">
                   <?php endif; ?>
+                  <div class="card-3d-glare"></div>
                 </a>
                 <div class="slide-info-row">
                   <div>

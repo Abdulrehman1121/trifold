@@ -39,15 +39,44 @@
   // Master Initialization on DOM ready
   document.addEventListener('DOMContentLoaded', () => {
     initHeroUnfold();
+    init3DHeroDepth();
     initContinuousStory();
     initCinematicCarousel();
+    init3DTilt();
     initScrollReveals();
     initServiceAccordion();
   });
 
   /* ------------------------------------------------------------------------
-     01. HERO UNFOLDING CEREMONY
+     01. HERO UNFOLDING CEREMONY & 3D PARALLAX
      ------------------------------------------------------------------------ */
+  function init3DHeroDepth() {
+    if (reducedMotion || window.matchMedia('(pointer: coarse)').matches) return;
+    const hero = document.querySelector('.hero-section');
+    if (!hero) return;
+    const planes = hero.querySelectorAll('.hero-logo-svg .plane');
+    if (!planes.length) return;
+
+    hero.addEventListener('mousemove', (e) => {
+      const rect = hero.getBoundingClientRect();
+      const xRatio = (e.clientX - rect.left) / rect.width - 0.5;
+      const yRatio = (e.clientY - rect.top) / rect.height - 0.5;
+
+      planes.forEach((p, idx) => {
+        const factor = (idx + 1) * 14;
+        p.style.transform = `translate3d(${xRatio * factor}px, ${yRatio * factor}px, 0)`;
+        p.style.transition = 'transform 0.12s ease-out';
+      });
+    });
+
+    hero.addEventListener('mouseleave', () => {
+      planes.forEach((p) => {
+        p.style.transition = 'transform 0.6s var(--ease-power3-out)';
+        p.style.transform = 'translate3d(0, 0, 0)';
+      });
+    });
+  }
+
   function initHeroUnfold() {
     const hero = document.querySelector('.hero-section');
     if (!hero) return;
@@ -134,7 +163,7 @@
   }
 
   /* ------------------------------------------------------------------------
-     02. CONTINUOUS OPENING STORY (IDEA -> IDENTITY -> EXPERIENCE -> CONNECTED)
+     02. CONTINUOUS OPENING STORY & TRAVELLING 3D LOGO
      ------------------------------------------------------------------------ */
   function initContinuousStory() {
     const storySection = document.querySelector('.story-scroll-section');
@@ -142,8 +171,60 @@
 
     const cards = storySection.querySelectorAll('.story-step-card');
     const morphSymbol = storySection.querySelector('.story-svg-box');
+    const travelMarker = document.getElementById('story-travel-logo');
+    const badgeSvg = travelMarker ? travelMarker.querySelector('.story-badge-svg') : null;
 
     if (!cards.length) return;
+
+    // Helper to calculate start & end Y positions relative to story-timeline-rail
+    function getRailOffsets() {
+      const firstCard = cards[0];
+      const lastCard = cards[cards.length - 1];
+      const firstTitle = firstCard.querySelector('.story-step-title') || firstCard;
+      const lastTitle = lastCard.querySelector('.story-step-title') || lastCard;
+
+      if (!travelMarker || !travelMarker.parentElement) return { startY: 0, endY: 300 };
+
+      const railRect = travelMarker.parentElement.getBoundingClientRect();
+      const firstTitleRect = firstTitle.getBoundingClientRect();
+      const lastTitleRect = lastTitle.getBoundingClientRect();
+
+      const startY = (firstTitleRect.top + firstTitleRect.height / 2) - railRect.top - (travelMarker.offsetHeight / 2);
+      const endY = (lastTitleRect.top + lastTitleRect.height / 2) - railRect.top - (travelMarker.offsetHeight / 2);
+
+      return { startY: Math.max(0, startY), endY: Math.max(startY, endY) };
+    }
+
+    // GSAP ScrollTrigger to move 3D logo from first heading down to last heading
+    if (travelMarker && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && !reducedMotion) {
+      const initialOffsets = getRailOffsets();
+      gsap.set(travelMarker, { y: initialOffsets.startY });
+
+      gsap.to(travelMarker, {
+        y: () => getRailOffsets().endY,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: cards[0],
+          endTrigger: cards[cards.length - 1],
+          start: 'top 65%',
+          end: 'bottom 65%',
+          scrub: 0.4,
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            const p = self.progress;
+            // Full 3D rotation, tilting, and depth scaling as it travels
+            const rotY = p * 720;
+            const rotX = Math.sin(p * Math.PI * 3) * 22;
+            const rotZ = Math.cos(p * Math.PI * 2) * 12;
+            const scale = 1 + Math.sin(p * Math.PI) * 0.22;
+
+            if (badgeSvg) {
+              badgeSvg.style.transform = `perspective(600px) rotateY(${rotY}deg) rotateX(${rotX}deg) rotateZ(${rotZ}deg) scale(${scale})`;
+            }
+          }
+        }
+      });
+    }
 
     // IntersectionObserver to activate step cards & trigger morph states
     const observer = new IntersectionObserver(
@@ -168,10 +249,63 @@
           }
         });
       },
-      { threshold: 0.6 }
+      { threshold: 0.5 }
     );
 
     cards.forEach((card) => observer.observe(card));
+  }
+
+  /* ------------------------------------------------------------------------
+     03. 3D CARD PERSPECTIVE TILT & SPECULAR GLARE
+     ------------------------------------------------------------------------ */
+  function init3DTilt() {
+    if (reducedMotion || window.matchMedia('(pointer: coarse)').matches) return;
+
+    const cards = document.querySelectorAll('.slide-media-card, .work-card, .featured-work-card, .service-hero-visual');
+    if (!cards.length) return;
+
+    cards.forEach((card) => {
+      let glare = card.querySelector('.card-3d-glare');
+      if (!glare) {
+        glare = document.createElement('div');
+        glare.className = 'card-3d-glare';
+        card.appendChild(glare);
+      }
+
+      let reqId = null;
+
+      function onMouseMove(e) {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const xRatio = (x / rect.width) - 0.5;
+        const yRatio = (y / rect.height) - 0.5;
+
+        const rotX = -yRatio * 18;
+        const rotY = xRatio * 18;
+
+        if (reqId) cancelAnimationFrame(reqId);
+        reqId = requestAnimationFrame(() => {
+          card.style.transform = `perspective(1100px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.025, 1.025, 1.025)`;
+          card.style.transition = 'transform 0.08s ease-out';
+
+          const glareX = (x / rect.width) * 100;
+          const glareY = (y / rect.height) * 100;
+          glare.style.opacity = '1';
+          glare.style.background = `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 65%)`;
+        });
+      }
+
+      function onMouseLeave() {
+        if (reqId) cancelAnimationFrame(reqId);
+        card.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+        card.style.transform = 'perspective(1100px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+        glare.style.opacity = '0';
+      }
+
+      card.addEventListener('mousemove', onMouseMove);
+      card.addEventListener('mouseleave', onMouseLeave);
+    });
   }
 
   /* ------------------------------------------------------------------------

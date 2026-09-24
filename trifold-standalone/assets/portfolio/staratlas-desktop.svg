@@ -15,7 +15,7 @@
   <!-- Website Header Navigation -->
   <rect x="0" y="49" width="1280" height="72" fill="#FFFFFF" fill-opacity="0.8"/>
   <text x="80" y="93" font-family="'Manrope', sans-serif" font-weight="800" font-size="22" letter-spacing="-0.5" fill="#191919">Star Atlas</text>
-  <text x="400" y="91" font-family="'Manrope', sans-serif" font-weight="500" font-size="14" fill="#555555">Metaverse Â· Fleet Â· Market Â· Whitepaper</text>
+  <text x="400" y="91" font-family="'Manrope', sans-serif" font-weight="500" font-size="14" fill="#555555">Metaverse · Fleet · Market · Whitepaper</text>
   <rect x="1100" y="68" width="100" height="34" rx="4" fill="#0E1424"/>
   <text x="1124" y="90" font-family="'Manrope', sans-serif" font-weight="600" font-size="12" fill="#FFFFFF">Contact</text>
   
@@ -25,7 +25,7 @@
     <text x="14" y="17" font-family="'Manrope', sans-serif" font-weight="600" font-size="11" letter-spacing="1" fill="#0E1424">SELECTED CASE</text>
     
     <text x="0" y="85" font-family="'Manrope', sans-serif" font-weight="800" font-size="56" letter-spacing="-1.5" fill="#191919">Star Atlas</text>
-    <text x="0" y="130" font-family="'Manrope', sans-serif" font-weight="400" font-size="20" fill="#666666">Next-generation space metaverse & gaming ecosystem</text>
+    <text x="0" y="130" font-family="'Manrope', sans-serif" font-weight="400" font-size="20" fill="#666666">Next-generation space metaverse &amp; gaming ecosystem</text>
     
     <rect x="0" y="170" width="160" height="48" rx="4" fill="#191919"/>
     <text x="32" y="200" font-family="'Manrope', sans-serif" font-weight="600" font-size="14" fill="#F5F2EB">Explore Project</text>

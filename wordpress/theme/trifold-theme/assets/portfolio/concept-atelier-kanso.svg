@@ -11,7 +11,7 @@
   <!-- Massive Editorial Heading -->
   <g transform="translate(60, 200)">
     <text x="0" y="60" font-family="'Manrope', sans-serif" font-weight="800" font-size="82" letter-spacing="-3" fill="#191919">Atelier Kanso</text>
-    <text x="0" y="110" font-family="'Manrope', sans-serif" font-weight="500" font-size="22" letter-spacing="0.5" fill="#E4492E">Architecture & Spatial Studio</text>
+    <text x="0" y="110" font-family="'Manrope', sans-serif" font-weight="500" font-size="22" letter-spacing="0.5" fill="#E4492E">Architecture &amp; Spatial Studio</text>
   </g>
   
   <!-- Architectural / Graphic Artwork Field -->

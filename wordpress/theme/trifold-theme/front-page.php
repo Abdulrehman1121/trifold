@@ -61,26 +61,45 @@ get_header();
   <section class="story-scroll-section" id="story">
     <div class="container">
       <div class="story-pin-container">
-        <div class="story-narrative-col">
-          <div class="story-step-card active" data-step="1">
-            <span class="story-step-num">01 / GENESIS</span>
-            <h2 class="story-step-title"><?php esc_html_e('EVERY BUSINESS STARTS WITH AN IDEA.', 'trifold'); ?></h2>
-            <p class="story-step-desc"><?php esc_html_e('A vision for how things could work better. But an idea without form remains invisible to customers.', 'trifold'); ?></p>
+        <!-- Travelling 3D Logo Rail -->
+        <div class="story-narrative-wrapper">
+          <div class="story-timeline-rail">
+            <div class="story-rail-line"></div>
+            <div class="story-travel-logo-marker" id="story-travel-logo">
+              <div class="story-3d-badge">
+                <svg viewBox="0 0 294 272" width="44" height="44" class="story-badge-svg" aria-hidden="true">
+                  <g transform="translate(40 40)">
+                    <polygon class="plane p0" points="0,33 50,0 214,0 90,57" fill="#E4492E"/>
+                    <polygon class="plane p1" points="113,67 214,3 214,58 149,84" fill="#E4492E" opacity="0.95"/>
+                    <polygon class="plane p2" points="91,64 149,95 149,192 91,158" fill="#E4492E" opacity="0.85"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="story-marker-glow"></div>
+            </div>
           </div>
-          <div class="story-step-card" data-step="2">
-            <span class="story-step-num">02 / FOUNDATION</span>
-            <h2 class="story-step-title"><?php esc_html_e('WE GIVE IT AN IDENTITY.', 'trifold'); ?></h2>
-            <p class="story-step-desc"><?php esc_html_e('Strategic positioning, a distinct symbol, considered typography and a visual system that makes your business recognized.', 'trifold'); ?></p>
-          </div>
-          <div class="story-step-card" data-step="3">
-            <span class="story-step-num">03 / REALIZATION</span>
-            <h2 class="story-step-title"><?php esc_html_e('THEN WE TURN THAT IDENTITY INTO AN EXPERIENCE.', 'trifold'); ?></h2>
-            <p class="story-step-desc"><?php esc_html_e('We architect and build websites that carry your brand confidence into every digital touchpoint.', 'trifold'); ?></p>
-          </div>
-          <div class="story-step-card" data-step="4">
-            <span class="story-step-num">04 / CONTINUITY</span>
-            <h2 class="story-step-title"><?php esc_html_e('AND KEEP IT CONNECTED EVERYWHERE.', 'trifold'); ?></h2>
-            <p class="story-step-desc"><?php esc_html_e('Social assets, collateral, pitch presentations, and campaigns—all moving together as parts of one system.', 'trifold'); ?></p>
+
+          <div class="story-narrative-col">
+            <div class="story-step-card active" data-step="1">
+              <span class="story-step-num">01 / GENESIS</span>
+              <h2 class="story-step-title"><?php esc_html_e('EVERY BUSINESS STARTS WITH AN IDEA.', 'trifold'); ?></h2>
+              <p class="story-step-desc"><?php esc_html_e('A vision for how things could work better. But an idea without form remains invisible to customers.', 'trifold'); ?></p>
+            </div>
+            <div class="story-step-card" data-step="2">
+              <span class="story-step-num">02 / FOUNDATION</span>
+              <h2 class="story-step-title"><?php esc_html_e('WE GIVE IT AN IDENTITY.', 'trifold'); ?></h2>
+              <p class="story-step-desc"><?php esc_html_e('Strategic positioning, a distinct symbol, considered typography and a visual system that makes your business recognized.', 'trifold'); ?></p>
+            </div>
+            <div class="story-step-card" data-step="3">
+              <span class="story-step-num">03 / REALIZATION</span>
+              <h2 class="story-step-title"><?php esc_html_e('THEN WE TURN THAT IDENTITY INTO AN EXPERIENCE.', 'trifold'); ?></h2>
+              <p class="story-step-desc"><?php esc_html_e('We architect and build websites that carry your brand confidence into every digital touchpoint.', 'trifold'); ?></p>
+            </div>
+            <div class="story-step-card" data-step="4">
+              <span class="story-step-num">04 / CONTINUITY</span>
+              <h2 class="story-step-title"><?php esc_html_e('AND KEEP IT CONNECTED EVERYWHERE.', 'trifold'); ?></h2>
+              <p class="story-step-desc"><?php esc_html_e('Social assets, collateral, pitch presentations, and campaigns—all moving together as parts of one system.', 'trifold'); ?></p>
+            </div>
           </div>
         </div>
 
@@ -162,7 +181,7 @@ get_header();
             ?>
             <div class="carousel-slide active" data-bg="#F0F4F1">
               <a href="<?php echo esc_url(home_url('/work/')); ?>" data-cursor="view" class="slide-media-card">
-                <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/portfolio/sumus-desktop.svg'); ?>" alt="Sumus" class="slide-image">
+                <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/portfolio/sumus-desktop.jpg'); ?>" alt="Sumus" class="slide-image">
               </a>
               <div class="slide-info-row">
                 <div class="slide-meta-left">
@@ -364,7 +383,7 @@ get_header();
       <div class="graphic-wall-grid">
         <div class="graphic-wall-card">
           <a href="<?php echo esc_url(home_url('/project/concept-atelier-kanso/')); ?>" data-cursor="view">
-            <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/portfolio/concept-atelier-kanso.svg'); ?>" alt="Atelier Kanso" class="graphic-poster-img">
+            <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/portfolio/concept-atelier-kanso.jpg'); ?>" alt="Atelier Kanso" class="graphic-poster-img">
           </a>
           <div class="graphic-card-body">
             <div>
@@ -377,7 +396,7 @@ get_header();
 
         <div class="graphic-wall-card">
           <a href="<?php echo esc_url(home_url('/project/concept-kohi-roasters/')); ?>" data-cursor="view">
-            <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/portfolio/concept-kohi-roasters.svg'); ?>" alt="Kohi Craft Roasters" class="graphic-poster-img">
+            <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/portfolio/concept-kohi-roasters.jpg'); ?>" alt="Kohi Craft Roasters" class="graphic-poster-img">
           </a>
           <div class="graphic-card-body">
             <div>
