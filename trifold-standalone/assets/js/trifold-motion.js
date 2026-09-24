@@ -45,6 +45,7 @@
     init3DTilt();
     initScrollReveals();
     initServiceAccordion();
+    initCtaTextAnimation();
   });
 
   /* ------------------------------------------------------------------------
@@ -456,5 +457,80 @@
     );
 
     revealElements.forEach((el) => observer.observe(el));
+  }
+
+  /* ------------------------------------------------------------------------
+     06. CLOSING CTA TEXT ANIMATION & 3D PARALLAX
+     ------------------------------------------------------------------------ */
+  function initCtaTextAnimation() {
+    const cta = document.querySelector('.cta-section');
+    if (!cta) return;
+
+    const chars = cta.querySelectorAll('.cta-word-char');
+    const subline = cta.querySelector('.cta-subline');
+    const btn = cta.querySelector('.cta-btn-wrapper');
+
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && !reducedMotion) {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: cta,
+          start: 'top 75%',
+          once: true,
+          onEnter: () => cta.classList.add('is-revealed')
+        }
+      });
+
+      tl.fromTo(
+        chars,
+        { y: '125%', rotate: 4, opacity: 0 },
+        {
+          y: '0%',
+          rotate: 0,
+          opacity: 1,
+          duration: 1.05,
+          stagger: 0.08,
+          ease: 'power4.out'
+        }
+      );
+
+      if (subline) {
+        tl.fromTo(
+          subline,
+          { y: 30, opacity: 0, filter: 'blur(8px)' },
+          { y: 0, opacity: 1, filter: 'blur(0px)', duration: 0.8, ease: 'power3.out' },
+          '-=0.4'
+        );
+      }
+
+      if (btn) {
+        tl.fromTo(
+          btn,
+          { y: 25, scale: 0.94, opacity: 0 },
+          { y: 0, scale: 1, opacity: 1, duration: 0.7, ease: 'back.out(1.4)' },
+          '-=0.3'
+        );
+      }
+    } else {
+      cta.classList.add('is-revealed');
+    }
+
+    // Interactive subtle 3D mouse parallax on headline
+    if (!reducedMotion && !window.matchMedia('(pointer: coarse)').matches) {
+      const title = cta.querySelector('.cta-crescendo-title');
+      if (title) {
+        cta.addEventListener('mousemove', (e) => {
+          const rect = cta.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          title.style.transform = `perspective(1000px) rotateX(${-y * 10}deg) rotateY(${x * 12}deg) translate3d(${x * 20}px, ${y * 15}px, 0)`;
+          title.style.transition = 'transform 0.1s ease-out';
+        });
+
+        cta.addEventListener('mouseleave', () => {
+          title.style.transition = 'transform 0.8s var(--ease-power3-out)';
+          title.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translate3d(0, 0, 0)';
+        });
+      }
+    }
   }
 })();

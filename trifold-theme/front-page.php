@@ -511,21 +511,35 @@ get_header();
     </div>
   </section>
 
-  <!-- 10. CLOSING CALL-TO-ACTION -->
+  <!-- 10. CLOSING CALL-TO-ACTION (LET'S UNFOLD IT) -->
   <section class="cta-section" id="contact-cta">
-    <div class="container">
-      <span class="kicker"><?php esc_html_e('Ready to begin?', 'trifold'); ?></span>
-      <h2 class="cta-crescendo-title">
-        HAVE SOMETHING IN MIND?<br>
-        LET'S <span class="unfold-highlight">UNFOLD IT.</span>
+    <div class="cta-ambient-glow"></div>
+    <div class="container cta-container-inner">
+      <span class="kicker kicker-animated"><span class="kicker-line"></span><?php esc_html_e('Ready to begin?', 'trifold'); ?></span>
+      <h2 class="cta-crescendo-title cta-animated-title" aria-label="<?php esc_attr_e('HAVE SOMETHING IN MIND? LET\'S UNFOLD IT.', 'trifold'); ?>">
+        <span class="cta-line">
+          <span class="cta-word-wrap"><span class="cta-word-char"><?php esc_html_e('HAVE', 'trifold'); ?></span></span>
+          <span class="cta-word-wrap"><span class="cta-word-char"><?php esc_html_e('SOMETHING', 'trifold'); ?></span></span>
+          <span class="cta-word-wrap"><span class="cta-word-char"><?php esc_html_e('IN', 'trifold'); ?></span></span>
+        </span>
+        <span class="cta-line">
+          <span class="cta-word-wrap"><span class="cta-word-char"><?php esc_html_e('MIND?', 'trifold'); ?></span></span>
+        </span>
+        <span class="cta-line cta-line-accent">
+          <span class="cta-word-wrap"><span class="cta-word-char"><?php esc_html_e('LET\'S', 'trifold'); ?></span></span>
+          <span class="cta-word-wrap"><span class="cta-word-char unfold-highlight"><?php esc_html_e('UNFOLD', 'trifold'); ?></span></span>
+          <span class="cta-word-wrap"><span class="cta-word-char unfold-highlight"><?php esc_html_e('IT.', 'trifold'); ?></span><span class="pulsing-live-dot cta-dot"></span></span>
+        </span>
       </h2>
-      <p class="cta-subline">
+      <p class="cta-subline cta-animated-subline">
         <?php esc_html_e('Whether you need a complete brand identity, a considered website, or ongoing design support, we help every touchpoint feel part of the same business.', 'trifold'); ?>
       </p>
-      <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn-vermilion" style="font-size: 1.1rem; padding: 20px 44px;">
-        <?php esc_html_e('Start a project with us', 'trifold'); ?>
-        <svg class="btn-icon-arrow" viewBox="0 0 16 16" fill="none"><path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+      <div class="cta-btn-wrapper">
+        <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="btn btn-vermilion cta-pulse-btn" style="font-size: 1.15rem; padding: 20px 48px;">
+          <?php esc_html_e('Start a project with us', 'trifold'); ?>
+          <svg class="btn-icon-arrow" viewBox="0 0 16 16" fill="none"><path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
     </div>
   </section>
 </main>
