@@ -15,14 +15,44 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 48px;
       margin-top: 56px;
+      margin-bottom: 100px;
+      clear: both;
+      position: relative;
     }
     .portfolio-grid-item {
-      transition: opacity 0.35s ease, transform 0.35s ease;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .portfolio-grid-item .slide-media-card {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      border-radius: 8px;
+      background-color: #121212;
+      display: block;
+      box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.12);
+      text-decoration: none;
+    }
+    .portfolio-grid-item .slide-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .portfolio-index-header {
+      margin-top: 96px;
+      margin-bottom: 24px;
+      clear: both;
+      display: block;
+      position: relative;
     }
     .portfolio-table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 80px;
+      margin-top: 24px;
+      clear: both;
     }
     .portfolio-table th, .portfolio-table td {
       padding: 20px 16px;
@@ -41,6 +71,7 @@
     @media (max-width: 900px) {
       .portfolio-grid {
         grid-template-columns: 1fr;
+        gap: 36px;
       }
     }
   </style>
@@ -299,7 +330,7 @@
       </div>
 
       <!-- Complete Index Table -->
-      <h3 style="font-size: var(--font-size-h2); margin-top: 100px; letter-spacing: -0.02em;">PROJECT ARCHIVE INDEX</h3>
+      <h2 class="portfolio-index-header" style="font-size: var(--font-size-h2); letter-spacing: -0.02em;">PROJECT ARCHIVE INDEX</h2>
       <table class="portfolio-table">
         <thead>
           <tr>

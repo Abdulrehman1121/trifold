@@ -109,6 +109,67 @@
   color: #FFFFFF;
 }
 
+/* --------------------------------------------------------------------------
+   NAVBAR LIGHT CONTRAST MODE (Dark backgrounds / dark case studies)
+   -------------------------------------------------------------------------- */
+.site-header.nav-light .brand-logo svg .word path,
+body.dark-header .site-header .brand-logo svg .word path,
+.dark-theme .site-header .brand-logo svg .word path {
+  fill: #FFFFFF !important;
+}
+
+.site-header.nav-light .nav-link,
+body.dark-header .site-header .nav-link,
+.dark-theme .site-header .nav-link {
+  color: #F5F2EB !important;
+  opacity: 0.92;
+}
+
+.site-header.nav-light .nav-link:hover,
+body.dark-header .site-header .nav-link:hover,
+.dark-theme .site-header .nav-link:hover {
+  color: var(--color-vermilion) !important;
+  opacity: 1;
+}
+
+.site-header.nav-light .nav-link.active,
+body.dark-header .site-header .nav-link.active,
+.dark-theme .site-header .nav-link.active {
+  color: #FFFFFF !important;
+  font-weight: 600;
+}
+
+.site-header.nav-light .header-cta,
+body.dark-header .site-header .header-cta,
+.dark-theme .site-header .header-cta {
+  background-color: var(--color-vermilion) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 18px rgba(228, 73, 46, 0.45);
+}
+
+.site-header.nav-light .header-cta:hover,
+body.dark-header .site-header .header-cta:hover,
+.dark-theme .site-header .header-cta:hover {
+  background-color: #FFFFFF !important;
+  color: #191919 !important;
+  box-shadow: 0 6px 22px rgba(255, 255, 255, 0.3);
+}
+
+.site-header.nav-light .menu-toggle span,
+body.dark-header .site-header .menu-toggle span,
+.dark-theme .site-header .menu-toggle span {
+  background-color: #FFFFFF !important;
+}
+
+.site-header.nav-light.scrolled,
+body.dark-header .site-header.scrolled,
+.dark-theme .site-header.scrolled {
+  background-color: rgba(14, 18, 27, 0.94) !important;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
 /* Mobile Menu Toggle Button */
 .menu-toggle {
   display: none;
@@ -591,7 +652,7 @@
   border-color: var(--color-ink);
 }
 
-/* Cinematic Carousel Stage */
+/* Cinematic Carousel Stage with Infinite Horizontal Movement */
 .carousel-stage-wrapper {
   position: relative;
   width: 100vw;
@@ -599,17 +660,36 @@
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
-  overflow: visible;
+  overflow: hidden;
   padding: 40px 0;
 }
 
 .carousel-track {
   display: flex;
   gap: 40px;
+  width: max-content;
   cursor: grab;
   user-select: none;
   touch-action: pan-y;
   will-change: transform;
+  animation: infiniteHorizontalMove 50s linear infinite;
+}
+
+.carousel-track:hover {
+  animation-play-state: paused;
+}
+
+.carousel-track.is-dragging {
+  animation: none !important;
+}
+
+@keyframes infiniteHorizontalMove {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 .carousel-track:active {
@@ -617,18 +697,30 @@
 }
 
 .carousel-slide {
-  flex: 0 0 74vw;
-  max-width: 1240px;
-  min-width: 320px;
+  flex: 0 0 68vw;
+  max-width: 1080px;
+  min-width: 340px;
   position: relative;
-  transition: transform 0.5s var(--ease-power3-out), opacity 0.5s ease, filter 0.5s ease;
-  opacity: 0.45;
-  transform: scale(0.92);
+  transition: transform 0.4s var(--ease-power3-out), opacity 0.4s ease;
+  opacity: 0.95;
+  transform: scale(0.98);
 }
 
+.carousel-slide:hover,
 .carousel-slide.active {
   opacity: 1;
   transform: scale(1);
+}
+
+@media (max-width: 768px) {
+  .carousel-slide {
+    flex: 0 0 88vw;
+    max-width: 88vw;
+  }
+  .carousel-track {
+    gap: 24px;
+    animation-duration: 36s;
+  }
 }
 
 .slide-media-card {
@@ -639,10 +731,44 @@
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.08);
   border: 1px solid var(--border-light);
   transition: box-shadow 0.4s ease;
+  display: block;
+  text-decoration: none;
 }
 
-.carousel-slide.active .slide-media-card:hover {
-  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.14);
+.slide-media-card:hover {
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.16);
+}
+
+.card-live-pill {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: rgba(18, 18, 20, 0.85);
+  color: #FFFFFF;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s var(--ease-power3-out);
+  z-index: 8;
+  opacity: 0.92;
+}
+
+.slide-media-card:hover .card-live-pill {
+  opacity: 1;
+  background: var(--color-vermilion);
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 10px 24px rgba(228, 73, 46, 0.5);
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 .slide-image {
@@ -651,6 +777,7 @@
   aspect-ratio: 16 / 10;
   object-fit: cover;
   transition: transform 0.8s var(--ease-expo-out);
+  display: block;
 }
 
 .slide-media-card:hover .slide-image {
@@ -667,6 +794,54 @@
 
 .slide-meta-left {
   flex: 1;
+}
+
+/* Kinetic Animated Text Headline */
+.cinematic-headline-animated {
+  font-size: var(--font-size-h1);
+  letter-spacing: -0.03em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3em;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.word-wrap {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+}
+
+.word-char {
+  display: inline-block;
+  transform: translateY(115%);
+  opacity: 0;
+  transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.85s ease;
+}
+
+.cinematic-portfolio-section.is-revealed .word-char {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.pulsing-live-dot {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: var(--color-vermilion);
+  margin-left: 10px;
+  position: relative;
+  vertical-align: middle;
+  box-shadow: 0 0 14px var(--color-vermilion);
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0% { transform: scale(0.85); box-shadow: 0 0 0 0 rgba(228, 73, 46, 0.7); }
+  70% { transform: scale(1.25); box-shadow: 0 0 0 14px rgba(228, 73, 46, 0); }
+  100% { transform: scale(0.85); box-shadow: 0 0 0 0 rgba(228, 73, 46, 0); }
 }
 
 .slide-title {

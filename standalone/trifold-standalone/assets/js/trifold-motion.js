@@ -309,141 +309,95 @@
   }
 
   /* ------------------------------------------------------------------------
-     03. CINEMATIC PORTFOLIO CAROUSEL (~75VW CENTERED + PEEK + DRAG)
+     04. CINEMATIC PORTFOLIO REEL (INFINITE HORIZONTAL MARQUEE + TEXT ANIMATION)
      ------------------------------------------------------------------------ */
   function initCinematicCarousel() {
     const carouselSection = document.querySelector('.cinematic-portfolio-section');
     if (!carouselSection) return;
 
     const track = carouselSection.querySelector('.carousel-track');
+    const stage = carouselSection.querySelector('.carousel-stage-wrapper');
     const slides = Array.from(carouselSection.querySelectorAll('.carousel-slide'));
-    const counterEl = carouselSection.querySelector('.carousel-counter');
     const prevBtn = carouselSection.querySelector('.carousel-prev');
     const nextBtn = carouselSection.querySelector('.carousel-next');
+    const counterEl = carouselSection.querySelector('.carousel-counter');
+    const chars = carouselSection.querySelectorAll('.word-char');
 
-    if (!track || !slides.length) return;
-
-    let currentIndex = 0;
-    let isDragging = false;
-    let startX = 0;
-    let currentTranslate = 0;
-    let prevTranslate = 0;
-    let animationID = 0;
-
-    function setPositionByIndex() {
-      // Calculate slide width and centering offset
-      const slide = slides[0];
-      const slideWidth = slide.getBoundingClientRect().width;
-      const gap = 40;
-      const stageWidth = window.innerWidth;
-      const centerOffset = (stageWidth - slideWidth) / 2;
-
-      currentTranslate = -(currentIndex * (slideWidth + gap)) + centerOffset;
-      prevTranslate = currentTranslate;
-      track.style.transform = `translateX(${currentTranslate}px)`;
-
-      // Update active states
-      slides.forEach((s, idx) => {
-        if (idx === currentIndex) {
-          s.classList.add('active');
-        } else {
-          s.classList.remove('active');
+    // Text Reveal Animation with GSAP ScrollTrigger
+    if (chars.length && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && !reducedMotion) {
+      gsap.fromTo(
+        chars,
+        { y: '115%', opacity: 0 },
+        {
+          y: '0%',
+          opacity: 1,
+          duration: 0.85,
+          stagger: 0.07,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: carouselSection,
+            start: 'top 78%',
+            onEnter: () => carouselSection.classList.add('is-revealed')
+          }
         }
-      });
-
-      // Update counter
-      if (counterEl) {
-        const currentStr = String(currentIndex + 1).padStart(2, '0');
-        const totalStr = String(slides.length).padStart(2, '0');
-        counterEl.textContent = `${currentStr} / ${totalStr}`;
-      }
-
-      // Background accent shift
-      const activeSlide = slides[currentIndex];
-      const bgColor = activeSlide.getAttribute('data-bg');
-      if (bgColor) {
-        carouselSection.style.backgroundColor = bgColor;
-      } else {
-        carouselSection.style.backgroundColor = 'var(--color-ivory)';
-      }
+      );
+    } else {
+      carouselSection.classList.add('is-revealed');
     }
 
-    // Drag / Pointer Events
-    track.addEventListener('pointerdown', (e) => {
-      isDragging = true;
-      startX = e.clientX;
-      track.style.transition = 'none';
-      track.setPointerCapture(e.pointerId);
+    if (!track) return;
+
+    // Hover pause and resume for infinite horizontal movement
+    track.addEventListener('mouseenter', () => {
+      track.style.animationPlayState = 'paused';
     });
 
-    track.addEventListener('pointermove', (e) => {
-      if (!isDragging) return;
-      const currentX = e.clientX;
-      const diff = currentX - startX;
-      currentTranslate = prevTranslate + diff;
-      track.style.transform = `translateX(${currentTranslate}px)`;
+    track.addEventListener('mouseleave', () => {
+      track.style.animationPlayState = 'running';
     });
 
-    function endDrag(e) {
-      if (!isDragging) return;
-      isDragging = false;
-      const diff = currentTranslate - prevTranslate;
-      track.style.transition = 'transform 0.5s cubic-bezier(0.215, 0.61, 0.355, 1)';
-
-      if (diff < -60 && currentIndex < slides.length - 1) {
-        currentIndex += 1;
-      } else if (diff > 60 && currentIndex > 0) {
-        currentIndex -= 1;
-      }
-      setPositionByIndex();
-    }
-
-    track.addEventListener('pointerup', endDrag);
-    track.addEventListener('pointercancel', endDrag);
-
-    // Arrow Buttons
-    if (prevBtn) {
-      prevBtn.addEventListener('click', () => {
-        if (currentIndex > 0) {
-          currentIndex -= 1;
-          track.style.transition = 'transform 0.5s cubic-bezier(0.215, 0.61, 0.355, 1)';
-          setPositionByIndex();
-        }
-      });
-    }
-
+    // Arrow button nudges
     if (nextBtn) {
       nextBtn.addEventListener('click', () => {
-        if (currentIndex < slides.length - 1) {
-          currentIndex += 1;
-          track.style.transition = 'transform 0.5s cubic-bezier(0.215, 0.61, 0.355, 1)';
-          setPositionByIndex();
+        track.style.animationPlayState = 'paused';
+        const slideW = slides[0] ? slides[0].offsetWidth + 36 : 600;
+        track.style.transition = 'transform 0.6s var(--ease-power3-out)';
+        const curTransform = window.getComputedStyle(track).transform;
+        let matrixX = 0;
+        if (curTransform !== 'none') {
+          const values = curTransform.split('(')[1].split(')')[0].split(',');
+          matrixX = parseFloat(values[4]) || 0;
         }
+        track.style.transform = `translateX(${matrixX - slideW}px)`;
+        setTimeout(() => {
+          track.style.transition = '';
+          track.style.animationPlayState = 'running';
+        }, 1200);
       });
     }
 
-    // Keyboard navigation
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft' && currentIndex > 0) {
-        currentIndex -= 1;
-        track.style.transition = 'transform 0.5s cubic-bezier(0.215, 0.61, 0.355, 1)';
-        setPositionByIndex();
-      } else if (e.key === 'ArrowRight' && currentIndex < slides.length - 1) {
-        currentIndex += 1;
-        track.style.transition = 'transform 0.5s cubic-bezier(0.215, 0.61, 0.355, 1)';
-        setPositionByIndex();
-      }
-    });
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        track.style.animationPlayState = 'paused';
+        const slideW = slides[0] ? slides[0].offsetWidth + 36 : 600;
+        track.style.transition = 'transform 0.6s var(--ease-power3-out)';
+        const curTransform = window.getComputedStyle(track).transform;
+        let matrixX = 0;
+        if (curTransform !== 'none') {
+          const values = curTransform.split('(')[1].split(')')[0].split(',');
+          matrixX = parseFloat(values[4]) || 0;
+        }
+        track.style.transform = `translateX(${matrixX + slideW}px)`;
+        setTimeout(() => {
+          track.style.transition = '';
+          track.style.animationPlayState = 'running';
+        }, 1200);
+      });
+    }
 
-    // Window resize handler
-    window.addEventListener('resize', () => {
-      track.style.transition = 'none';
-      setPositionByIndex();
-    });
-
-    // Initial positioning
-    track.style.transition = 'transform 0.5s cubic-bezier(0.215, 0.61, 0.355, 1)';
-    setPositionByIndex();
+    if (counterEl) {
+      counterEl.textContent = '01 / 08';
+    }
   }
 
   /* ------------------------------------------------------------------------

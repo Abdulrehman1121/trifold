@@ -124,7 +124,13 @@ get_header();
       <div class="portfolio-header-row">
         <div>
           <span class="kicker"><?php esc_html_e('Selected Projects', 'trifold'); ?></span>
-          <h2 style="font-size: var(--font-size-h1); letter-spacing: -0.03em;"><?php esc_html_e('WORK THAT CONNECTS THE DOTS.', 'trifold'); ?></h2>
+          <h2 class="cinematic-headline-animated" aria-label="<?php esc_attr_e('WORK THAT CONNECTS THE DOTS.', 'trifold'); ?>">
+            <span class="word-wrap"><span class="word-char"><?php esc_html_e('WORK', 'trifold'); ?></span></span>
+            <span class="word-wrap"><span class="word-char"><?php esc_html_e('THAT', 'trifold'); ?></span></span>
+            <span class="word-wrap"><span class="word-char" style="color: var(--color-vermilion);"><?php esc_html_e('CONNECTS', 'trifold'); ?></span></span>
+            <span class="word-wrap"><span class="word-char"><?php esc_html_e('THE', 'trifold'); ?></span></span>
+            <span class="word-wrap"><span class="word-char"><?php esc_html_e('DOTS.', 'trifold'); ?></span><span class="pulsing-live-dot" title="Live Continuous Reel"></span></span>
+          </h2>
         </div>
         <a href="<?php echo esc_url(home_url('/work/')); ?>" class="btn btn-outline"><?php esc_html_e('View all projects', 'trifold'); ?></a>
       </div>
@@ -141,10 +147,23 @@ get_header();
             'order'          => 'ASC',
         ]);
 
+        $url_map = [
+            'sumus'         => 'https://www.sumus.co/',
+            'star-atlas'    => 'https://staratlas.com/',
+            'roberto-coin'  => 'https://robertocoin.com/',
+            'joco-cups'     => 'https://jococups.com/',
+            'nalgene'       => 'https://nalgene.com/',
+            'revert-ai'     => 'https://revert.ai/',
+            'smokehaus'     => 'https://smokehaus.com/',
+            'pixel-blossom' => 'https://pixelblossom.io/'
+        ];
+
         $idx = 0;
         if ($projects->have_posts()) :
             while ($projects->have_posts()) : $projects->the_post();
                 $idx++;
+                $slug = get_post_field('post_name', get_the_ID());
+                $live_url = get_post_meta(get_the_ID(), '_trifold_live_url', true) ?: ($url_map[$slug] ?? get_permalink());
                 $bg_color = get_post_meta(get_the_ID(), '_trifold_bg_color', true) ?: '#F5F2EB';
                 $contribution = get_post_meta(get_the_ID(), '_trifold_contribution', true) ?: 'To be confirmed';
                 $industry = get_post_meta(get_the_ID(), '_trifold_industry', true);
@@ -153,19 +172,21 @@ get_header();
                 $active_cls = ($idx === 1) ? ' active' : '';
                 ?>
                 <div class="carousel-slide<?php echo esc_attr($active_cls); ?>" data-bg="<?php echo esc_attr($bg_color); ?>">
-                  <a href="<?php the_permalink(); ?>" data-cursor="view" class="slide-media-card">
+                  <a href="<?php echo esc_url($live_url); ?>" target="_blank" rel="noopener noreferrer" data-cursor="view" class="slide-media-card" aria-label="<?php the_title_attribute(); ?>">
+                    <div class="card-live-pill">Live Site ↗</div>
                     <?php if (has_post_thumbnail()) : ?>
                       <?php the_post_thumbnail('large', ['class' => 'slide-image']); ?>
                     <?php elseif ($desktop_img) : ?>
                       <img src="<?php echo esc_url($desktop_img); ?>" alt="<?php the_title_attribute(); ?>" class="slide-image">
                     <?php else : ?>
-                      <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/portfolio/sumus-desktop.svg'); ?>" alt="<?php the_title_attribute(); ?>" class="slide-image">
+                      <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/portfolio/sumus-desktop.jpg'); ?>" alt="<?php the_title_attribute(); ?>" class="slide-image">
                     <?php endif; ?>
+                    <div class="card-3d-glare"></div>
                   </a>
                   <div class="slide-info-row">
                     <div class="slide-meta-left">
-                      <h3 class="slide-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-                      <p class="slide-industry"><?php echo esc_html($industry); ?></p>
+                      <h3 class="slide-title"><a href="<?php echo esc_url($live_url); ?>" target="_blank" rel="noopener noreferrer"><?php the_title(); ?> ↗</a></h3>
+                      <p class="slide-industry"><?php echo esc_html($industry); ?> · <a href="<?php the_permalink(); ?>" style="color: var(--color-vermilion); font-weight: 600;">Case Study →</a></p>
                     </div>
                     <div class="slide-meta-right">
                       <span class="slide-contribution-tag"><?php echo esc_html($contribution); ?></span>

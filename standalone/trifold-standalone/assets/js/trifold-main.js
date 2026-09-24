@@ -20,13 +20,39 @@
     const header = document.querySelector('.site-header');
     if (!header) return;
 
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 40) {
+    const isInherentlyDark = header.classList.contains('nav-light');
+    const darkSections = document.querySelectorAll('.story-scroll-section, [data-theme="dark"], .case-hero');
+
+    function checkHeaderContrast() {
+      const scrollY = window.scrollY;
+      if (scrollY > 40) {
         header.classList.add('scrolled');
       } else {
         header.classList.remove('scrolled');
       }
-    }, { passive: true });
+
+      if (!isInherentlyDark) {
+        let isOverDark = false;
+        darkSections.forEach((sec) => {
+          const rect = sec.getBoundingClientRect();
+          // Check if section background is dark
+          const bg = window.getComputedStyle(sec).backgroundColor;
+          if (rect.top <= 70 && rect.bottom >= 40) {
+            if (sec.classList.contains('story-scroll-section') || bg.includes('17, 24, 39') || bg.includes('25, 25, 25') || bg.includes('18, 18, 20')) {
+              isOverDark = true;
+            }
+          }
+        });
+        if (isOverDark) {
+          header.classList.add('nav-light');
+        } else {
+          header.classList.remove('nav-light');
+        }
+      }
+    }
+
+    window.addEventListener('scroll', checkHeaderContrast, { passive: true });
+    checkHeaderContrast();
   }
 
   /* ------------------------------------------------------------------------
@@ -222,19 +248,18 @@
         const filterVal = btn.getAttribute('data-filter');
 
         projectCards.forEach((card) => {
-          const category = card.getAttribute('data-category');
-          if (filterVal === 'all' || category.includes(filterVal)) {
-            card.style.display = 'block';
-            setTimeout(() => {
+          const category = card.getAttribute('data-category') || '';
+          const isMatch = (filterVal === 'all' || category.includes(filterVal));
+          if (isMatch) {
+            card.style.display = 'flex';
+            requestAnimationFrame(() => {
               card.style.opacity = '1';
               card.style.transform = 'translateY(0)';
-            }, 10);
+            });
           } else {
+            card.style.display = 'none';
             card.style.opacity = '0';
-            card.style.transform = 'translateY(16px)';
-            setTimeout(() => {
-              card.style.display = 'none';
-            }, 300);
+            card.style.transform = 'translateY(12px)';
           }
         });
       });
